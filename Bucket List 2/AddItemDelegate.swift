@@ -14,8 +14,9 @@ protocol AddItemDelegate: class {
     // Cancel button function
     func addItemViewController(_ controller: AddItemViewController, didPressCancelButton button: UIBarButtonItem)
     
-    // Save button function
-    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: String)
+    // Save button function utilizes a partially customized function that includes
+    // an optional parameter 'at indexPath: NSIndexPath?'
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem itemText: String, at indexPath: NSIndexPath?)
 
 }
 
