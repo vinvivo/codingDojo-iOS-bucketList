@@ -10,5 +10,12 @@ import UIKit
 
 // One protocol to contain all delegated functions
 protocol AddItemDelegate: class {
-    func cancelButtonPressed(by controller: UIViewController)
+    
+    // Cancel button function
+    func addItemViewController(_ controller: AddItemViewController, didPressCancelButton button: UIBarButtonItem)
+    
+    // Save button function
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: String)
+
 }
+

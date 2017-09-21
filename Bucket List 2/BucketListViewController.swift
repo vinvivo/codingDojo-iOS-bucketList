@@ -23,11 +23,11 @@ class BucketListViewController: UITableViewController, AddItemDelegate {
         super.didReceiveMemoryWarning()
     }
 
-/* --------------------------------------------------
-     Conform to UITableViewController by:
-     1) Specifying how many rows, and
-     2) Telling each row where to get its data from.
- */
+    /* --------------------------------------------------
+         Conform to UITableViewController by:
+         1) Specifying how many rows, and
+         2) Telling each row where to get its data from.
+     */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -41,19 +41,26 @@ class BucketListViewController: UITableViewController, AddItemDelegate {
         return cell
         
     }
-//---------------------------------------------------
+    //---------------------------------------------------
 
-/* --------------------------------------------------
-     Conform to AddItemDelegate by:
-     1) Implementing required methods from the protocol.
- */
-    func cancelButtonPressed(by controller: UIViewController) {
+    /* --------------------------------------------------
+         Conform to AddItemDelegate by:
+         1) Implementing required methods from the protocol.
+     */
+    func addItemViewController(_ controller: AddItemViewController, didPressCancelButton button: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-//---------------------------------------------------
-/* --------------------------------------------------
-     Prepare for segue to AddItemViewController by setting self as its delegate.
- */
+   
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: String) {
+        dismiss(animated: true, completion: nil)
+        items.append(item)
+        tableView.reloadData()
+    }
+    //---------------------------------------------------
+    
+    /* --------------------------------------------------
+         Prepare for segue to AddItemViewController by setting self as its delegate.
+     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItemSegue" {
