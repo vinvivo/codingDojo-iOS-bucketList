@@ -73,15 +73,31 @@ class BucketListViewController: UITableViewController, AddItemDelegate {
     /* ---------------------------------------------------
         How to know which cell user wants to edit?
         Tapping a row will perform a particular segue (EditItemSegue) and pass a
-        'sender'.  Before any segue happens, our program prepares for the segue
-        according to the 'prepare(for segue...' below.  The sender can be Any?
-        so
+        'sender'.  Before any segue happens, our code prepares for the segue
+        according to the 'prepare(for segue...' below.
        ------------------------------------------------ */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "EditItemSegue", sender: indexPath)
+//        performSegue(withIdentifier: "EditItemSegue", sender: indexPath)
+        print("Row \(indexPath) selected")
         
+    }
+
+    /* ---------------------------------------------------
+         Delete with a swipe functionality.
+     ------------------------------------------------ */
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        itemsList.remove(at: indexPath.row)
+        tableView.reloadData()
+        
+    }
+    
+    // If using a Detail Disclosure button, do the following:
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        performSegue(withIdentifier: "EditItemSegue", sender: indexPath)
     }
 
     /* --------------------------------------------------
